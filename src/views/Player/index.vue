@@ -44,7 +44,7 @@ import Playlist from './Playlist'
 import Toolbar from './Toolbar'
 import PlaylistItem from 'models/PlaylistItem'
 import Speaker from 'services/Speaker'
-import SpeakerNoteBuilder from 'presenters/SpeakerNoteBuilder'
+import buildSpeakerNote from 'presenters/SpeakerNote/build'
 import NippouLoader from 'services/NippouLoader'
 
 export default {
@@ -91,7 +91,7 @@ export default {
     },
     play () {
       this.items.forEach(item => {
-        const note = SpeakerNoteBuilder.build(item.nippou, setting.listSectinTitles)
+        const note = buildSpeakerNote(item.nippou, setting.listSectinTitles)
         const speaker = new Speaker(note, window.speechSynthesis)
 
         speaker.onStart = () => {
